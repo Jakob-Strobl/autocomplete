@@ -25,6 +25,11 @@ export interface AutocompleteSettings<T extends AutocompleteItem> {
      */
     container?: HTMLDivElement;
     /**
+     * Parent element used when attaching the widget into the DOM
+     * If not specified, the widget will append to the document.body
+     */
+    parent?: HTMLElement;
+    /**
      * This method allows you to override the default rendering function for items.
      * It must return a DIV element or undefined to skip rendering.
      */
@@ -109,7 +114,8 @@ export default function autocomplete<T extends AutocompleteItem>(settings: Autoc
 
     // just an alias to minimize JS file size
     const doc = document;
-
+ 
+    const parent: HTMLElement = settings.parent || doc.body
     const container: HTMLDivElement = settings.container || doc.createElement("div");
     const containerStyle = container.style;
     const userAgent = navigator.userAgent;
@@ -168,7 +174,7 @@ export default function autocomplete<T extends AutocompleteItem>(settings: Autoc
      */
     function attach(): void {
         if (!container.parentNode) {
-            doc.body.appendChild(container);
+            parent.appendChild(container);
         }
     }
 
