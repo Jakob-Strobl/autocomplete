@@ -12,6 +12,7 @@
   function autocomplete(settings) {
       // just an alias to minimize JS file size
       var doc = document;
+      var parent = settings.parent || doc.body;
       var container = settings.container || doc.createElement("div");
       var containerStyle = container.style;
       var userAgent = navigator.userAgent;
@@ -60,7 +61,7 @@
        */
       function attach() {
           if (!container.parentNode) {
-              doc.body.appendChild(container);
+              parent.appendChild(container);
           }
       }
       /**

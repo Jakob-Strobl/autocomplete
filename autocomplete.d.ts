@@ -17,6 +17,11 @@ export interface AutocompleteSettings<T extends AutocompleteItem> {
      */
     container?: HTMLDivElement;
     /**
+     * Parent element used when attaching the widget into the DOM
+     * If not specified, the widget will append to the document.body
+     */
+    parent?: HTMLElement;
+    /**
      * This method allows you to override the default rendering function for items.
      * It must return a DIV element or undefined to skip rendering.
      */
